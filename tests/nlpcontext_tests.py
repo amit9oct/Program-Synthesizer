@@ -1,4 +1,5 @@
 from program_synthesis_engine.modules.nlp_context import NlpContext
+import uuid
 
 
 sample_texts = \
@@ -13,12 +14,19 @@ sample_texts = \
         u"This is a tree. What is this? "
     ]
 
-for text in sample_texts:
+contexts = map(lambda x: NlpContext(x), sample_texts)
+
+for context in contexts:
     print "----------------------------------------------------------------"
-    print "CONTEXT: {}".format(text)
+    print "CONTEXT: {}".format(context.phrase)
     print "****************************************************************"
-    context = NlpContext(text)
-    print context.print_tree()
+    print context.print_tree_on_console()
     print "----------------------------------------------------------------"
     print ""
     print ""
+
+html_gen_code = contexts[0].get_html_visualization_of_trees(contexts[1:])
+guid = uuid.uuid4()
+with open('Html_visual_{}.html'.format(guid), 'w') as f:
+    print "Generating the file with html visualization. Filename: Html_visual_{}.html".format(guid)
+    f.write(html_gen_code)
