@@ -1,15 +1,19 @@
-from commonglobals import nlp, displacy
+from commonglobals import \
+    get_new_doc, \
+    get_named_entities, \
+    render_pos_html, \
+    get_noun_chunk
 
 
 class NlpContext:
-    def __init__(self, phrase):
+    def __init__(self, phrase, doc_type='textacy'):
         """
         This class isolates the internals getting implemented in any NLP library
         :type phrase: str
         """
         assert isinstance(phrase, basestring)
+        self.doc = get_new_doc(phrase, doc_type)
         self.phrase = phrase
-        self.doc = nlp(phrase)
 
     @property
     def tokens(self):
@@ -43,4 +47,12 @@ class NlpContext:
 
         list_of_docs = [self.doc]
         list_of_docs.extend(map(lambda x: x.doc, nlp_contexts))
-        return displacy.render(list_of_docs, style='dep', page=True)
+        return render_pos_html(list_of_docs)
+
+    @property
+    def named_entities(self):
+        return get_named_entities(self.doc)
+
+    @property
+    def noun_chunk(self):
+        return get_noun_chunk(self.doc)

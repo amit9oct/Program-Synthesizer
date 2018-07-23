@@ -1,4 +1,5 @@
 from program_synthesis_engine.modules.nlp_context import NlpContext
+from program_synthesis_engine.modules.helpers import dump_object
 import uuid
 
 
@@ -11,7 +12,10 @@ sample_texts = \
         u'Who is Steve Richards ?',
         u'Who is Ramanujam ?',
         u"Find all users who are above average height.",
-        u"This is a tree. What is this? "
+        u"This is a tree. What is this? ",
+        u"This is a tall tree.",
+        u"This is a coconut tree",
+        u"This is Tom Cruse"
     ]
 
 contexts = map(lambda x: NlpContext(x), sample_texts)
@@ -19,6 +23,8 @@ contexts = map(lambda x: NlpContext(x), sample_texts)
 for context in contexts:
     print "----------------------------------------------------------------"
     print "CONTEXT: {}".format(context.phrase)
+    for ent in context.named_entities:
+        print ent, ent.label_, ent.start, ent.end
     print "****************************************************************"
     print context.print_tree_on_console()
     print "----------------------------------------------------------------"
