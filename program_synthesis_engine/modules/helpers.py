@@ -92,3 +92,15 @@ def parse_question(doc):
         root_element = get_root(doc)
         return Actions.parse_action(root_element)
     return None
+def to_unicode(string):
+    if type(string) is unicode:
+        return string
+    else:
+        return unicode(string, "utf-8")
+
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
