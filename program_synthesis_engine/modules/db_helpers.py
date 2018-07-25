@@ -167,11 +167,11 @@ class sqlite_db_helpers:
 
 
 helper = sqlite_db_helpers()
-helper.init('test.db')
-matching_cols1 = helper.get_matching_columns(u'cheaper than 30000', u'30000')
-matching_cols2 = helper.get_matching_columns(u'', u'')
-print matching_cols1
-print matching_cols2
+helper.init('..\\..\\tests\\testing.db')
+matching_cols = helper.get_matching_columns("employees from chennai", "chennai", tags=["location"])
+print matching_cols
+print helper.get_representative_columns("Employees")
+
 """
 Schema of table
 

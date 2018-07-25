@@ -1,8 +1,8 @@
 import spacy.tokens
+
 from commonglobals import nlp
 from dependency import *
 from first_order_logic import *
-from networkx import DiGraph
 
 subjects = ["nsubj", "nsubjpass", "csubj", "csubjpass", "agent", "expl"]
 objects = ["dobj", "dative", "attr", "oprd"]
@@ -104,9 +104,14 @@ def to_unicode(string):
         return str(string).decode("utf-8", "ignore")
 
 
+
 def is_number(s):
     try:
         float(s)
         return True
     except ValueError:
         return False
+
+
+def isclose(a, b, rel_tol=1e-09, abs_tol=0.0):
+    return abs(a - b) <= max(rel_tol * max(abs(a), abs(b)), abs_tol)
