@@ -168,8 +168,10 @@ class sqlite_db_helpers:
 
 helper = sqlite_db_helpers()
 helper.init('test.db')
-matching_cols = helper.get_matching_columns("cheaper than 30000", "30000")
-print matching_cols
+matching_cols1 = helper.get_matching_columns(u'cheaper than 30000', u'30000')
+matching_cols2 = helper.get_matching_columns(u'', u'')
+print matching_cols1
+print matching_cols2
 """
 Schema of table
 
