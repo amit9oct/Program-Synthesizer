@@ -23,10 +23,12 @@ class bing_spell_corrector(spell_corrector):
     apiPath = "/bing/v7.0/spellcheck?"
     apiParams = "mkt=en-us&mode=proof"
 
-    apiKey1 = "b0eb713482dc4b1387602bb8b8834932"
-    apiKey2 = "f60c74ad5e464748a93c75e99a1be337"
+    apiKey1 = "<some-key>"
+    apiKey2 = "<some-key>"
 
     def spell_correct(self, to_correct):
+        if bing_spell_corrector.apiKey1 == "<some-key>":
+            raise Exception("Set Bing's spell check api keys")
         data = urllib.urlencode({'text': to_correct})
         conn = httplib.HTTPSConnection(bing_spell_corrector.hostName)
 
