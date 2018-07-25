@@ -35,9 +35,6 @@ def get_spacy_doc(doc):
         return doc
 
 
-
-
-
 def get_subs_from_conjunctions(subs):
     more_subs = []
     for sub in subs:
@@ -190,10 +187,6 @@ def find_svos(tokens):
                     objNegated = is_negated(obj)
                     svos.append((sub.lower_, "!" + v.lower_ if verbNegated or objNegated else v.lower_, obj.lower_))
     return svos
-
-
-
-
 
 
 def get_named_entities(doc):
