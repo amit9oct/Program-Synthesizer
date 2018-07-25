@@ -92,11 +92,17 @@ def parse_question(doc):
         root_element = get_root(doc)
         return Actions.parse_action(root_element)
     return None
+
+
 def to_unicode(string):
-    if type(string) is unicode:
-        return string
+    if isinstance(string, basestring):
+        if type(string) is unicode:
+            return string
+        else:
+            return string.decode("utf-8", "ignore")
     else:
-        return unicode(string, "utf-8")
+        return str(string).decode("utf-8", "ignore")
+
 
 def is_number(s):
     try:
