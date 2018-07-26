@@ -1,5 +1,5 @@
 import spacy.tokens
-
+from Wrapper_Node import *
 
 class FirstOrderOperators:
     CONJUNCTION = "/\\"
@@ -45,7 +45,8 @@ class FirstOrderExpression:
         for expression in expressions:
             assert isinstance(expression, FirstOrderAtomicExpression) or \
                    isinstance(expression, FirstOrderExpression) or \
-                   isinstance(expression, spacy.tokens.Token)
+                   isinstance(expression, spacy.tokens.Token) or \
+                   isinstance(expression, wrapper_node)
         if operator == FirstOrderOperators.NEGATION:
             assert len(expressions) == 1
         self.operator = operator
