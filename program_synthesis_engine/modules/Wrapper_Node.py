@@ -15,4 +15,4 @@ class wrapper_node:
         self.phrase_similarity = phrase_similarity
 
     def __str__(self):
-        return str((str(self.token), str(self.word_similarity), str(self.phrase_similarity)))
+        return str(self.token)

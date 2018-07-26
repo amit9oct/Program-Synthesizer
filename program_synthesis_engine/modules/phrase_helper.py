@@ -6,15 +6,6 @@ from itertools import permutations
 from Wrapper_Node import *
 from commonglobals import nlp
 
-line = u'Get all employees who are younger than 15.'
-parse_tree = helpers.parse_question(nlp(line))
-
-"""
-spacy_entities = []
-for ent in line.ents:
-    spacy_entities.append([ent.text, ent.label_])
-"""
-
 
 class phrase_helper:
     def __init__(self, db_path):
@@ -22,7 +13,7 @@ class phrase_helper:
         self.db_helper.init()
 
     def iterate(self, current_node):
-        print current_node
+        #print current_node
 
         if current_node is None:
             return
@@ -64,8 +55,10 @@ class phrase_helper:
 
 
 def __main__():
+    line = u'Get all employees who are younger than 15.'
+    parse_tree = helpers.parse_question(nlp(line))
     phelper = phrase_helper('..\\..\\tests\\testing.db')
     wrapped_tree = phelper.get_wrapped_tree(parse_tree)
     print wrapped_tree
 
-__main__()
+#__main__()
