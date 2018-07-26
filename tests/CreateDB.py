@@ -4,22 +4,22 @@ import sqlite3
 conn = sqlite3.connect('testing.db')
 cursor = conn.cursor()
 
-# cursor.execute("CREATE TABLE Employees("
-#                "id INTEGER PRIMARY KEY,"
-#                "name TEXT,"
-#                "age INTEGER,"
-#                "sex TEXT,"
-#                "salary INTEGER,"
-#                "city TEXT,"
-#                "manager TEXT)")
-#
-# cursor.execute("INSERT INTO Employees (name, age, sex, salary, city, manager) VALUES ('Tom Cruise', 55, 'Male', 150000, 'Paris', NULL)")
-# cursor.execute("INSERT INTO Employees (name, age, sex, salary, city, manager) VALUES ('Tom Hanks', 53, 'Male', 125000, 'California', 'Tom Cruise')")
-# cursor.execute("INSERT INTO Employees (name, age, sex, salary, city, manager) VALUES ('Daniel Radcliffe', 26, 'Male', 75000, 'London', 'Tom Cruise')")
-# cursor.execute("INSERT INTO Employees (name, age, sex, salary, city, manager) VALUES ('Emma Watson', 25, 'Female', 75000, 'London', 'Tom Cruise')")
-# cursor.execute("INSERT INTO Employees (name, age, sex, salary, city, manager) VALUES ('Anne Hathaway', 40, 'Female', 100000, 'California', 'Tom Cruise')")
-# cursor.execute("INSERT INTO Employees (name, age, sex, salary, city, manager) VALUES ('Rebecca', 45, 'Female', 120000, 'Paris', 'Tom Cruise')")
-# cursor.execute("INSERT INTO Employees (name, age, sex, salary, city, manager) VALUES ('Natalie Portman', 35, 'Female', 130000, 'LA', 'Tom Cruise')")
+cursor.execute("CREATE TABLE Employees("
+               "id INTEGER PRIMARY KEY,"
+               "name TEXT,"
+               "age INTEGER,"
+               "sex TEXT,"
+               "salary INTEGER,"
+               "city TEXT,"
+               "manager TEXT)")
+
+cursor.execute("INSERT INTO Employees (name, age, sex, salary, city, manager) VALUES ('Tom Cruise', 55, 'Male', 150000, 'Paris', NULL)")
+cursor.execute("INSERT INTO Employees (name, age, sex, salary, city, manager) VALUES ('Tom Hanks', 53, 'Male', 125000, 'California', 'Tom Cruise')")
+cursor.execute("INSERT INTO Employees (name, age, sex, salary, city, manager) VALUES ('Daniel Radcliffe', 26, 'Male', 75000, 'London', 'Tom Cruise')")
+cursor.execute("INSERT INTO Employees (name, age, sex, salary, city, manager) VALUES ('Emma Watson', 25, 'Female', 75000, 'London', 'Tom Cruise')")
+cursor.execute("INSERT INTO Employees (name, age, sex, salary, city, manager) VALUES ('Anne Hathaway', 40, 'Female', 100000, 'California', 'Tom Cruise')")
+cursor.execute("INSERT INTO Employees (name, age, sex, salary, city, manager) VALUES ('Rebecca', 45, 'Female', 120000, 'Paris', 'Tom Cruise')")
+cursor.execute("INSERT INTO Employees (name, age, sex, salary, city, manager) VALUES ('Natalie Portman', 35, 'Female', 130000, 'LA', 'Tom Cruise')")
 
 cursor.execute("CREATE TABLE Test("
                "id INTEGER PRIMARY KEY,"
