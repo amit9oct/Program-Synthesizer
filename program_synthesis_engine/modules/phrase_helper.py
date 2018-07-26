@@ -54,9 +54,8 @@ def iterate(current_node):
                 output.append(iterate(smaller_exp))
             return FirstOrderExpression(current_node.operator, output)
 
-output = []
-for expression in parse_tree.expressions:
-    output.append(iterate(expression))
-
-print FirstOrderExpression(parse_tree.operator, output)
-# some error in printing
+def get_wrapped_tree(parse_tree):
+    output = []
+    for expression in parse_tree.expressions:
+        output.append(iterate(expression))
+    return FirstOrderExpression(parse_tree.operator, output)
