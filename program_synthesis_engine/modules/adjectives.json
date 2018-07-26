@@ -2,7 +2,7 @@
   "bad": {
     "word_type": "Irregular Word",
     "pos": "ADJ",
-    "comparitive": "worse",
+    "comparative": "worse",
     "superlative": "worst",
     "related_noun": {
       "quality": "lesser than"
@@ -11,7 +11,7 @@
   "good": {
     "word_type": "Irregular Word",
     "pos": "ADJ",
-    "comparitive": "better",
+    "comparative": "better",
     "superlative": "best",
     "related_noun": {
       "quality": "greater than"
@@ -20,31 +20,31 @@
   "much": {
     "word_type": "Irregular Word",
     "pos": "ADJ",
-    "comparitive": "more",
+    "comparative": "more",
     "superlative": "most"
   },
   "some": {
     "word_type": "Irregular Word",
     "pos": "ADJ",
-    "comparitive": "more",
+    "comparative": "more",
     "superlative": "most"
   },
   "many": {
     "word_type": "Irregular Word",
     "pos": "ADJ",
-    "comparitive": "more",
+    "comparative": "more",
     "superlative": "most"
   },
   "angry": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "angrier",
+    "comparative": "angrier",
     "superlative": "angriest"
   },
   "big": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "bigger",
+    "comparative": "bigger",
     "superlative": "biggest",
     "related_noun": {
       "size": "greater than"
@@ -53,7 +53,7 @@
   "black": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "blacker",
+    "comparative": "blacker",
     "superlative": "blackest",
     "related_noun": {
       "color": "greater than"
@@ -62,7 +62,7 @@
   "bland": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "blander",
+    "comparative": "blander",
     "superlative": "blandest",
     "related_noun": {
       "tedious": "greater than",
@@ -72,31 +72,31 @@
   "blue": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "bluer",
+    "comparative": "bluer",
     "superlative": "bluest"
   },
   "bold": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "bolder",
+    "comparative": "bolder",
     "superlative": "boldest"
   },
   "bossy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "bossier",
+    "comparative": "bossier",
     "superlative": "bossiest"
   },
   "brave": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "braver",
+    "comparative": "braver",
     "superlative": "bravest"
   },
   "brief": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "briefer",
+    "comparative": "briefer",
     "superlative": "briefest",
     "related_noun": {
       "time": "lesser than"
@@ -105,7 +105,7 @@
   "bright": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "brighter",
+    "comparative": "brighter",
     "superlative": "brightest",
     "related_noun": {
       "marks": "greater than",
@@ -116,7 +116,7 @@
   "broad": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "broader",
+    "comparative": "broader",
     "superlative": "broadest",
     "related_noun": {
       "size": "greater than",
@@ -126,19 +126,19 @@
   "busy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "busier",
+    "comparative": "busier",
     "superlative": "busiest"
   },
   "calm": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "calmer",
+    "comparative": "calmer",
     "superlative": "calmest"
   },
   "cheap": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "cheaper",
+    "comparative": "cheaper",
     "superlative": "cheapest",
     "related_noun": {
       "price": "lesser than",
@@ -148,13 +148,13 @@
   "chewy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "chewier",
+    "comparative": "chewier",
     "superlative": "chewiest"
   },
   "chubby": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "chubbier",
+    "comparative": "chubbier",
     "superlative": "chubbiest",
     "related_noun": {
       "fat": "greater than"
@@ -163,25 +163,25 @@
   "classy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "classier",
+    "comparative": "classier",
     "superlative": "classiest"
   },
   "clean": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "cleaner",
+    "comparative": "cleaner",
     "superlative": "cleanest"
   },
   "clever": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "cleverer",
+    "comparative": "cleverer",
     "superlative": "cleverest"
   },
   "close": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "closer",
+    "comparative": "closer",
     "superlative": "closest",
     "related_noun": {
       "distance": "lesser than"
@@ -190,25 +190,25 @@
   "cloudy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "cloudier",
+    "comparative": "cloudier",
     "superlative": "cloudiest"
   },
   "clumsy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "clumsier",
+    "comparative": "clumsier",
     "superlative": "clumsiest"
   },
   "coarse": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "coarser",
+    "comparative": "coarser",
     "superlative": "coarsest"
   },
   "cold": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "colder",
+    "comparative": "colder",
     "superlative": "coldest",
     "related_noun": {
       "temperature": "lesser than"
@@ -217,7 +217,7 @@
   "cool": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "cooler",
+    "comparative": "cooler",
     "superlative": "coolest",
     "related_noun": {
       "temperature": "lesser than"
@@ -226,61 +226,61 @@
   "crazy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "crazier",
+    "comparative": "crazier",
     "superlative": "craziest"
   },
   "creamy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "creamier",
+    "comparative": "creamier",
     "superlative": "creamiest"
   },
   "creepy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "creepier",
+    "comparative": "creepier",
     "superlative": "creepiest"
   },
   "crispy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "crispier",
+    "comparative": "crispier",
     "superlative": "crispiest"
   },
   "crunchy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "crunchier",
+    "comparative": "crunchier",
     "superlative": "crunchiest"
   },
   "curly": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "curly",
+    "comparative": "curly",
     "superlative": "curliest"
   },
   "curvy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "curvier",
+    "comparative": "curvier",
     "superlative": "curviest"
   },
   "cute": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "cuter",
+    "comparative": "cuter",
     "superlative": "cutest"
   },
   "damp": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "damper",
+    "comparative": "damper",
     "superlative": "dampest"
   },
   "dark": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "darker",
+    "comparative": "darker",
     "superlative": "darkest",
     "related_noun": {
       "color": "greater than"
@@ -289,13 +289,13 @@
   "deadly": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "deadlier",
+    "comparative": "deadlier",
     "superlative": "deadliest"
   },
   "deep": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "deeper",
+    "comparative": "deeper",
     "superlative": "deepest",
     "related_noun": {
       "depth": "greater than",
@@ -305,7 +305,7 @@
   "dense": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "denser",
+    "comparative": "denser",
     "superlative": "densest",
     "related_noun": {
       "density": "greater than"
@@ -314,37 +314,37 @@
   "dirty": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "dirtier",
+    "comparative": "dirtier",
     "superlative": "dirtiest"
   },
   "dry": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "drier",
+    "comparative": "drier",
     "superlative": "driest"
   },
   "dull": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "duller",
+    "comparative": "duller",
     "superlative": "dullest"
   },
   "dumb": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "dumber",
+    "comparative": "dumber",
     "superlative": "dumbest"
   },
   "dusty": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "dustier",
+    "comparative": "dustier",
     "superlative": "dustiest"
   },
   "early": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "earlier",
+    "comparative": "earlier",
     "superlative": "earliest",
     "related_noun": {
       "time": "lesser than"
@@ -353,7 +353,7 @@
   "easy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "easier",
+    "comparative": "easier",
     "superlative": "easiest",
     "related_noun": {
       "difficulty": "lesser than"
@@ -362,31 +362,31 @@
   "evil": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "more evil",
+    "comparative": "more evil",
     "superlative": "most evil"
   },
   "faint": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "fainter",
+    "comparative": "fainter",
     "superlative": "faintest"
   },
   "fair": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "fairer",
+    "comparative": "fairer",
     "superlative": "fairest"
   },
   "fancy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "fancier",
+    "comparative": "fancier",
     "superlative": "fanciest"
   },
   "far": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "farther",
+    "comparative": "farther",
     "superlative": "farthest",
     "related_noun": {
       "distance": "greater than"
@@ -395,7 +395,7 @@
   "fast": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "faster",
+    "comparative": "faster",
     "superlative": "fastest",
     "related_noun": {
       "speed": "greater than"
@@ -404,7 +404,7 @@
   "fat": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "fatter",
+    "comparative": "fatter",
     "superlative": "fattest",
     "related_noun": {
       "weight": "greater than"
@@ -413,7 +413,7 @@
   "few": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "fewer",
+    "comparative": "fewer",
     "superlative": "fewest",
     "related_noun": {
       "number": "lesser than"
@@ -422,49 +422,49 @@
   "fierce": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "fiercer",
+    "comparative": "fiercer",
     "superlative": "fiercest"
   },
   "filthy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "filthier",
+    "comparative": "filthier",
     "superlative": "filthiest"
   },
   "fine": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "finer",
+    "comparative": "finer",
     "superlative": "finest"
   },
   "firm": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "firmer",
+    "comparative": "firmer",
     "superlative": "firmest"
   },
   "fit": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "fitter",
+    "comparative": "fitter",
     "superlative": "fittest"
   },
   "flaky": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "flakier",
+    "comparative": "flakier",
     "superlative": "flakiest"
   },
   "flat": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "flatter",
+    "comparative": "flatter",
     "superlative": "flattest"
   },
   "fresh": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "fresher",
+    "comparative": "fresher",
     "superlative": "freshest",
     "related_noun": {
       "age": "lesser than"
@@ -473,13 +473,13 @@
   "friendly": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "friendlier",
+    "comparative": "friendlier",
     "superlative": "friendliest"
   },
   "full": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "fuller",
+    "comparative": "fuller",
     "superlative": "fullest",
     "related_noun": {
       "quantity": "greater than"
@@ -488,37 +488,37 @@
   "funny": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "funnier",
+    "comparative": "funnier",
     "superlative": "funniest"
   },
   "gentle": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "gentler",
+    "comparative": "gentler",
     "superlative": "gentlest"
   },
   "gloomy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "gloomier",
+    "comparative": "gloomier",
     "superlative": "gloomiest"
   },
   "greasy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "greasier",
+    "comparative": "greasier",
     "superlative": "greasiest"
   },
   "great": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "greater",
+    "comparative": "greater",
     "superlative": "greatest"
   },
   "greedy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "greedier",
+    "comparative": "greedier",
     "superlative": "greediest",
     "related_noun": {
       "price": "lesser than",
@@ -528,43 +528,43 @@
   "gross": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "grosser",
+    "comparative": "grosser",
     "superlative": "grossest"
   },
   "hairy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "hairier",
+    "comparative": "hairier",
     "superlative": "hairiest"
   },
   "handy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "handier",
+    "comparative": "handier",
     "superlative": "handiest"
   },
   "happy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "happier",
+    "comparative": "happier",
     "superlative": "happiest"
   },
   "hard": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "harder",
+    "comparative": "harder",
     "superlative": "hardest"
   },
   "harsh": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "harsher",
+    "comparative": "harsher",
     "superlative": "harshest"
   },
   "healthy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "healthier",
+    "comparative": "healthier",
     "superlative": "healthiest",
     "related_noun": {
       "calories": "lesser than"
@@ -573,7 +573,7 @@
   "heavy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "heavier",
+    "comparative": "heavier",
     "superlative": "heaviest",
     "related_noun": {
       "weight": "greater than"
@@ -582,7 +582,7 @@
   "high": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "higher",
+    "comparative": "higher",
     "superlative": "highest",
     "related_noun": {
       "height": "greater than"
@@ -591,13 +591,13 @@
   "hip": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "hipper",
+    "comparative": "hipper",
     "superlative": "hippest"
   },
   "hot": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "hotter",
+    "comparative": "hotter",
     "superlative": "hottest",
     "related_noun": {
       "temperature": "greater than"
@@ -606,43 +606,43 @@
   "humble": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "humbler",
+    "comparative": "humbler",
     "superlative": "humblest"
   },
   "hungry": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "hungrier",
+    "comparative": "hungrier",
     "superlative": "hungriest"
   },
   "icy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "icier",
+    "comparative": "icier",
     "superlative": "iciest"
   },
   "itchy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "itchier",
+    "comparative": "itchier",
     "superlative": "itchiest"
   },
   "juicy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "juicier",
+    "comparative": "juicier",
     "superlative": "juiciest"
   },
   "kind": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "kinder",
+    "comparative": "kinder",
     "superlative": "kindest"
   },
   "large": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "larger",
+    "comparative": "larger",
     "superlative": "largest",
     "related_noun": {
       "size": "greater than"
@@ -651,7 +651,7 @@
   "late": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "later",
+    "comparative": "later",
     "superlative": "latest",
     "related_noun": {
       "time": "greater than"
@@ -660,7 +660,7 @@
   "lazy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "lazier",
+    "comparative": "lazier",
     "superlative": "laziest",
     "related_noun": {
       "work": "lesser than"
@@ -669,7 +669,7 @@
   "light": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "lighter",
+    "comparative": "lighter",
     "superlative": "lightest",
     "related_noun": {
       "weight": "lesser than"
@@ -678,13 +678,13 @@
   "likely": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "likelier",
+    "comparative": "likelier",
     "superlative": "likeliest"
   },
   "little": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "littler",
+    "comparative": "littler",
     "superlative": "littlest",
     "related_noun": {
       "size": "lesser than",
@@ -694,13 +694,13 @@
   "lively": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "livelier",
+    "comparative": "livelier",
     "superlative": "liveliest"
   },
   "long": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "longer",
+    "comparative": "longer",
     "superlative": "longest",
     "related_noun": {
       "distance": "greater than",
@@ -710,7 +710,7 @@
   "loud": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "louder",
+    "comparative": "louder",
     "superlative": "loudest",
     "related_noun": {
       "sound": "greater than"
@@ -719,13 +719,13 @@
   "lovely": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "lovelier",
+    "comparative": "lovelier",
     "superlative": "loveliest"
   },
   "low": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "lower",
+    "comparative": "lower",
     "superlative": "lowest",
     "related_noun": {
       "height": "lesser than"
@@ -734,37 +734,37 @@
   "mad": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "madder",
+    "comparative": "madder",
     "superlative": "maddest"
   },
   "mean": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "meaner",
+    "comparative": "meaner",
     "superlative": "meanest"
   },
   "messy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "messier",
+    "comparative": "messier",
     "superlative": "messiest"
   },
   "mild": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "milder",
+    "comparative": "milder",
     "superlative": "mildest"
   },
   "moist": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "moister",
+    "comparative": "moister",
     "superlative": "moistest"
   },
   "narrow": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "narrower",
+    "comparative": "narrower",
     "superlative": "narrowest",
     "related_noun": {
       "width": "lesser than"
@@ -773,19 +773,19 @@
   "nasty": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "nastier",
+    "comparative": "nastier",
     "superlative": "nastiest"
   },
   "naughty": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "naughtier",
+    "comparative": "naughtier",
     "superlative": "naughtiest"
   },
   "near": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "nearer",
+    "comparative": "nearer",
     "superlative": "nearest",
     "related_noun": {
       "distance": "lesser than"
@@ -794,25 +794,25 @@
   "neat": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "neater",
+    "comparative": "neater",
     "superlative": "neatest"
   },
   "needy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "needier",
+    "comparative": "needier",
     "superlative": "neediest"
   },
   "nervous": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "more nervous",
+    "comparative": "more nervous",
     "superlative": "most nervous"
   },
   "new": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "newer",
+    "comparative": "newer",
     "superlative": "newest",
     "related_noun": {
       "age": "lesser than"
@@ -821,31 +821,31 @@
   "nice": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "nicer",
+    "comparative": "nicer",
     "superlative": "nicest"
   },
   "noisy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "noisier",
+    "comparative": "noisier",
     "superlative": "noisiest"
   },
   "odd": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "odder",
+    "comparative": "odder",
     "superlative": "oddest"
   },
   "oily": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "oilier",
+    "comparative": "oilier",
     "superlative": "oiliest"
   },
   "old": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": [
+    "comparative": [
       "older",
       "elder"
     ],
@@ -860,19 +860,19 @@
   "plain": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "plainer",
+    "comparative": "plainer",
     "superlative": "plainest"
   },
   "polite": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "politer",
+    "comparative": "politer",
     "superlative": "politest"
   },
   "poor": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "poorer",
+    "comparative": "poorer",
     "superlative": "poorest",
     "related_noun": {
       "money": "lesser than"
@@ -881,25 +881,25 @@
   "pretty": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "prettier",
+    "comparative": "prettier",
     "superlative": "prettiest"
   },
   "proud": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "prouder",
+    "comparative": "prouder",
     "superlative": "proudest"
   },
   "pure": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "purer",
+    "comparative": "purer",
     "superlative": "purest"
   },
   "quick": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "quicker",
+    "comparative": "quicker",
     "superlative": "quickest",
     "related_noun": {
       "time": "lesser than"
@@ -908,7 +908,7 @@
   "quiet": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "quieter",
+    "comparative": "quieter",
     "superlative": "quietest",
     "related_noun": {
       "sound": "lesser than"
@@ -917,19 +917,19 @@
   "rare": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "rarer",
+    "comparative": "rarer",
     "superlative": "rarest"
   },
   "raw": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "rawer",
+    "comparative": "rawer",
     "superlative": "rawest"
   },
   "rich": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "richer",
+    "comparative": "richer",
     "superlative": "richest",
     "related_noun": {
       "money": "greater than"
@@ -938,73 +938,73 @@
   "ripe": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "riper",
+    "comparative": "riper",
     "superlative": "ripest"
   },
   "risky": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "riskier",
+    "comparative": "riskier",
     "superlative": "riskiest"
   },
   "roomy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "roomier",
+    "comparative": "roomier",
     "superlative": "roomiest"
   },
   "rough": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "rougher",
+    "comparative": "rougher",
     "superlative": "roughest"
   },
   "rude": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "ruder",
+    "comparative": "ruder",
     "superlative": "rudest"
   },
   "rusty": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "rustier",
+    "comparative": "rustier",
     "superlative": "rustiest"
   },
   "sad": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "sadder",
+    "comparative": "sadder",
     "superlative": "saddest"
   },
   "safe": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "safer",
+    "comparative": "safer",
     "superlative": "safest"
   },
   "salty": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "saltier",
+    "comparative": "saltier",
     "superlative": "saltiest"
   },
   "sane": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "saner",
+    "comparative": "saner",
     "superlative": "sanest"
   },
   "scary": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "scarier",
+    "comparative": "scarier",
     "superlative": "scariest"
   },
   "shallow": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "shallower",
+    "comparative": "shallower",
     "superlative": "shallowest",
     "related_noun": {
       "depth": "lesser than"
@@ -1013,19 +1013,19 @@
   "sharp": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "sharper",
+    "comparative": "sharper",
     "superlative": "sharpest"
   },
   "shiny": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "shinier",
+    "comparative": "shinier",
     "superlative": "shiniest"
   },
   "short": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "shorter",
+    "comparative": "shorter",
     "superlative": "shortest",
     "related_noun": {
       "height": "lesser than",
@@ -1035,31 +1035,31 @@
   "shy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "shyer",
+    "comparative": "shyer",
     "superlative": "shyest"
   },
   "silly": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "sillier",
+    "comparative": "sillier",
     "superlative": "silliest"
   },
   "simple": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "simpler",
+    "comparative": "simpler",
     "superlative": "simplest"
   },
   "sincere": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "sincerer",
+    "comparative": "sincerer",
     "superlative": "sincerest"
   },
   "skinny": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "skinnier",
+    "comparative": "skinnier",
     "superlative": "skinniest",
     "related_noun": {
       "weight": "lesser than"
@@ -1068,13 +1068,13 @@
   "sleepy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "sleepier",
+    "comparative": "sleepier",
     "superlative": "sleepiest"
   },
   "slim": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "slimmer",
+    "comparative": "slimmer",
     "superlative": "slimmest",
     "related_noun": {
       "weight": "lesser than"
@@ -1083,13 +1083,13 @@
   "slimy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "slimier",
+    "comparative": "slimier",
     "superlative": "slimiest"
   },
   "slow": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "slower",
+    "comparative": "slower",
     "superlative": "slowest",
     "related_noun": {
       "speed": "lesser than"
@@ -1098,7 +1098,7 @@
   "small": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "smaller",
+    "comparative": "smaller",
     "superlative": "smallest",
     "related_noun": {
       "size": "lesser than"
@@ -1107,37 +1107,37 @@
   "smart": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "smarter",
+    "comparative": "smarter",
     "superlative": "smartest"
   },
   "smelly": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "smellier",
+    "comparative": "smellier",
     "superlative": "smelliest"
   },
   "smoky": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "smokier",
+    "comparative": "smokier",
     "superlative": "smokiest"
   },
   "smooth": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "smoother",
+    "comparative": "smoother",
     "superlative": "smoothest"
   },
   "soft": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "softer",
+    "comparative": "softer",
     "superlative": "softest"
   },
   "soon": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "sooner",
+    "comparative": "sooner",
     "superlative": "soonest",
     "related_noun": {
       "time": "lesser than"
@@ -1146,55 +1146,55 @@
   "sore": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "sorer",
+    "comparative": "sorer",
     "superlative": "sorest"
   },
   "sorry": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "sorrier",
+    "comparative": "sorrier",
     "superlative": "sorriest"
   },
   "sour": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "sourer",
+    "comparative": "sourer",
     "superlative": "sourest"
   },
   "spicy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "spicier",
+    "comparative": "spicier",
     "superlative": "spiciest"
   },
   "steep": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "steeper",
+    "comparative": "steeper",
     "superlative": "steepest"
   },
   "stingy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "stingier",
+    "comparative": "stingier",
     "superlative": "stingiest"
   },
   "strange": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "stranger",
+    "comparative": "stranger",
     "superlative": "strangest"
   },
   "strict": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "stricter",
+    "comparative": "stricter",
     "superlative": "strictest"
   },
   "strong": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "stronger",
+    "comparative": "stronger",
     "superlative": "strongest",
     "related_noun": {
       "strength": "greater than"
@@ -1203,25 +1203,25 @@
   "sunny": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "sunnier",
+    "comparative": "sunnier",
     "superlative": "sunniest"
   },
   "sweaty": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "sweatier",
+    "comparative": "sweatier",
     "superlative": "sweatiest"
   },
   "sweet": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "sweeter",
+    "comparative": "sweeter",
     "superlative": "sweetest"
   },
   "tall": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "taller",
+    "comparative": "taller",
     "superlative": "tallest",
     "related_noun": {
       "height": "greater than"
@@ -1230,19 +1230,19 @@
   "tan": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "tanner",
+    "comparative": "tanner",
     "superlative": "tannest"
   },
   "tasty": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "tastier",
+    "comparative": "tastier",
     "superlative": "tastiest"
   },
   "thick": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "thicker",
+    "comparative": "thicker",
     "superlative": "thickest",
     "related_noun": {
       "mass": "greater than",
@@ -1253,7 +1253,7 @@
   "thin": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "thinner",
+    "comparative": "thinner",
     "superlative": "thinnest",
     "related_noun": {
       "weight": "lesser than",
@@ -1265,13 +1265,13 @@
   "thirsty": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "thirstier",
+    "comparative": "thirstier",
     "superlative": "thirstiest"
   },
   "tiny": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "tinier",
+    "comparative": "tinier",
     "superlative": "tiniest",
     "related_noun": {
       "size": "lesser than"
@@ -1280,25 +1280,25 @@
   "tough": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "tougher",
+    "comparative": "tougher",
     "superlative": "toughest"
   },
   "true": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "truer",
+    "comparative": "truer",
     "superlative": "truest"
   },
   "ugly": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "uglier",
+    "comparative": "uglier",
     "superlative": "ugliest"
   },
   "warm": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "warmer",
+    "comparative": "warmer",
     "superlative": "warmest",
     "related_noun": {
       "temperature": "greater than"
@@ -1307,7 +1307,7 @@
   "weak": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "weaker",
+    "comparative": "weaker",
     "superlative": "weakest",
     "related_noun": {
       "strength": "lesser than"
@@ -1316,7 +1316,7 @@
   "wealthy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "wealthier",
+    "comparative": "wealthier",
     "superlative": "wealthiest",
     "related_noun": {
       "money": "greater than"
@@ -1325,55 +1325,55 @@
   "weird": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "weirder",
+    "comparative": "weirder",
     "superlative": "weirdest"
   },
   "wet": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "wetter",
+    "comparative": "wetter",
     "superlative": "wettest"
   },
   "wide": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "wider",
+    "comparative": "wider",
     "superlative": "widest"
   },
   "wild": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "wilder",
+    "comparative": "wilder",
     "superlative": "wildest"
   },
   "windy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "windier",
+    "comparative": "windier",
     "superlative": "windiest"
   },
   "wise": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "wiser",
+    "comparative": "wiser",
     "superlative": "wisest"
   },
   "worldly": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "worldlier",
+    "comparative": "worldlier",
     "superlative": "worldliest"
   },
   "worthy": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "worthier",
+    "comparative": "worthier",
     "superlative": "worthiest"
   },
   "young": {
     "word_type": "Regular Word",
     "pos": "ADJ",
-    "comparitive": "younger",
+    "comparative": "younger",
     "superlative": "youngest",
     "related_noun": {
       "age": "lesser than"
