@@ -16,7 +16,9 @@ def similarity_score(word1, word2):
     :param word2: Second Unicode word
     :return: Floating point score for similarity between the given two words
     """
-    return nlp(word1).similarity(nlp(word2))
+    word1_tok = word1 if (isinstance(word1, spacy.tokens.Token) or isinstance(word1, spacy.tokens.Doc)) else nlp(word1)
+    word2_tok = word2 if (isinstance(word2, spacy.tokens.Token) or isinstance(word2, spacy.tokens.Doc)) else nlp(word2)
+    return word1_tok.similarity(word2_tok)
 
 
 def dump_object(obj):

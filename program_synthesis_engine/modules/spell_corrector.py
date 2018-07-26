@@ -10,7 +10,7 @@ class spell_corrector:
     def __init__(self):
         """do nothing"""
 
-    def spell_correct(self):
+    def spell_correct(self, to_correct):
         return
 
 
@@ -43,9 +43,12 @@ class bing_spell_corrector(spell_corrector):
         return response["flaggedTokens"][0]["suggestions"][0]["suggestion"]
 
 
-corrector = bing_spell_corrector()
-print corrector.spell_correct("companyname")
-print corrector.spell_correct("laptpo")
-print corrector.spell_correct("approxAge")
-print corrector.spell_correct("internalMemory")
-print corrector.spell_correct("RAMSize")
+def __main__():
+    corrector = bing_spell_corrector()
+    print corrector.spell_correct("companyname")
+    print corrector.spell_correct("laptpo")
+    print corrector.spell_correct("approxAge")
+    print corrector.spell_correct("internalMemory")
+    print corrector.spell_correct("RAMSize")
+
+#__main__()

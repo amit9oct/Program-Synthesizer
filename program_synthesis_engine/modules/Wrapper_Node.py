@@ -1,5 +1,6 @@
 import spacy
 
+
 class wrapper_node:
     def __init__(self, token, word_similarity, phrase_similarity):
 
@@ -12,3 +13,6 @@ class wrapper_node:
         self.token = token
         self.word_similarity = word_similarity
         self.phrase_similarity = phrase_similarity
+
+    def __str__(self):
+        return str((str(self.token), str(self.word_similarity), str(self.phrase_similarity)))

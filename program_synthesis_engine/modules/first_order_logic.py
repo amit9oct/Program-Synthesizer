@@ -53,8 +53,10 @@ class FirstOrderExpression:
         self.expressions = list(expressions)
 
     def are_all_expressions_tokens(self):
-        return reduce(lambda x, y: isinstance(y, spacy.tokens.Token) and isinstance(x, spacy.tokens.Token), \
-                      self.expressions)
+        for expression in self.expressions:
+            if not isinstance(expression, spacy.tokens.Token):
+                return False
+        return True
 
     def print_tree(self):
         if len(self.expressions) == 1:
@@ -74,7 +76,7 @@ class FirstOrderExpression:
             for expr in self.expressions:
                 if isinstance(expr, FirstOrderExpression) or isinstance(expr, FirstOrderAtomicExpression):
                     str_exprs.append(expr.print_tree())
-                elif isinstance(expr, spacy.tokens.Token):
+                elif isinstance(expr, spacy.tokens.Token) or isinstance(expr, wrapper_node):
                     str_exprs.append(str(expr))
                 else:
                     raise Exception("FirstOrderExpression got corrupted!!", expr)
@@ -88,7 +90,7 @@ class FirstOrderExpression:
             expr_count = len(self.expressions)
             while idx < expr_count:
                 cur = self.expressions[idx]
-                if isinstance(cur, spacy.tokens.Token):
+                if isinstance(cur, spacy.tokens.Token) or isinstance(cur, wrapper_node):
                     if idx < expr_count - 1:
                         nex = self.expressions[idx + 1]
                         str_nex = nex.print_tree() if isinstance(nex, FirstOrderExpression) or \

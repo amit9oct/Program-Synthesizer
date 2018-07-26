@@ -17,14 +17,20 @@ class sqlite_db_helpers:
     get_distinct_of_column = "SELECT DISTINCT %s FROM %s ORDER BY %s"
     get_count_of_rows = "SELECT count(*) FROM %s"
 
-    # private dictionaries used internally
-    _columns = {}
-    _distinct_values = {}
+    def __init__(self, db_path):
+        assert isinstance(db_path, basestring)
+        self._columns = {}
+        self._distinct_values = {}
+        self.db_path = db_path
+        self._is_inited = False
+        self.bing_corrector = spell_corrector.bing_spell_corrector()
+        self.corrected_column_names = {}
 
-    def init(self, db_name):
+    def init(self):
         """
         takes name of the database and processes it for anonymization
         """
+        db_name = self.db_path
         # connect to db
         try:
             conn = sqlite3.connect(db_name)
@@ -40,7 +46,9 @@ class sqlite_db_helpers:
             return
 
         ### print "Fetching all tables in the database " + db_name
-
+        # private dictionaries used internally
+        self._columns = {}
+        self._distinct_values = {}
         for table in cursor.execute(sqlite_db_helpers.get_tables_query).fetchall():
             ### print "Fetching schema of table " + table[0]
             self._columns[table[0]] = []
@@ -66,7 +74,7 @@ class sqlite_db_helpers:
                 4 - default value of column
                 5 - whether the column is a primary key
                 """
-
+                self.corrected_column_names[column[1]] = self.bing_corrector.spell_correct(column[1])
                 if column[2] != "TEXT":
                     ### print "Not a text value. Skipping memoization."
                     continue
@@ -81,7 +89,7 @@ class sqlite_db_helpers:
                     self._distinct_values[table[0]][column[1]] = distinct_values
 
                 ### print distinct_values
-
+        self._is_inited = True
         ### print self._columns
 
     def should_store(self, column_name, distinct_count, row_count):
@@ -165,7 +173,7 @@ class sqlite_db_helpers:
             found_some_column = False
             for column in self._columns[table]:
                 # check if types match
-                if type(value) == str and column[1] == "TEXT":
+                if isinstance(value, basestring) and column[1] == "TEXT":
                     # check if it's a perfect match
                     if column[0] in self._distinct_values[table]:
                         match_result = self.match_with_values(self._distinct_values[table][column[0]], value)
@@ -235,8 +243,11 @@ class sqlite_db_helpers:
         :param column_name:
         :return: a real value indicating match index of phrase/value and column
         """
-        bing_corrector = spell_corrector.bing_spell_corrector()
-        corrected_name = bing_corrector.spell_correct(column_name)
+        corrected_name = ""
+        if column_name in self.corrected_column_names.keys():
+            corrected_name = self.corrected_column_names[column_name]
+        else:
+            corrected_name = self.bing_corrector.spell_correct(column_name)
         # use corrected name to find similarity
         word_similarity = helpers.similarity_score( \
             helpers.to_unicode(corrected_name), \
@@ -258,11 +269,14 @@ class sqlite_db_helpers:
         return max(word_similarity, phrase_similarity, tag_similarity)
 
 
-helper = sqlite_db_helpers()
-helper.init('..\\..\\tests\\testing.db')
-matching_cols = helper.get_matching_columns("employees from chennai", "chennai", tags=["location"])
-print matching_cols
-print helper.get_representative_columns("Employees")
+def __main__():
+    helper = sqlite_db_helpers('..\\..\\tests\\testing.db')
+    helper.init()
+    matching_cols = helper.get_matching_columns("employees from chennai", "chennai", tags=["location"])
+    print matching_cols
+    print helper.get_representative_columns("Employees")
+
+#__main__()
 
 """
 Schema of table

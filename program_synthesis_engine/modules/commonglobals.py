@@ -5,7 +5,7 @@ from textacy import extract
 
 # This is common global object which is used for computing similarity
 # Some private members so as to make it work
-nlp = spacy.load('en_core_web_sm')
+nlp = spacy.load('en_core_web_lg')
 lang_en = textacy.load_spacy('en_core_web_sm')
 possible_docs = {'textacy', 'spacy'}
 subjects = ["nsubj", "nsubjpass", "csubj", "csubjpass", "agent", "expl"]
