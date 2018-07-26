@@ -285,7 +285,7 @@ def __main__():
     print matching_cols
     print helper.get_representative_columns("Employees")
 
-__main__()
+#__main__()
 
 """
 Schema of table
