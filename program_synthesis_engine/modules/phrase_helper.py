@@ -7,7 +7,7 @@ from Wrapper_Node import *
 
 nlp = spacy.load('en_core_web_sm')
 
-line = u'Get all employees who are younger than 15.'
+line = u'Get all laptop whose maker is Sony.'
 parse_tree = helpers.parse_question(nlp(line))
 
 """
@@ -38,10 +38,11 @@ def iterate(current_node):
                 phrase = u''
                 for tok in p:
                     phrase += str(tok) + " "
-                    if(phrase in line):
-                        print phrase
-                        phrase_matching_cols = db_helper.get_matching_columns(phrase, u'')
-                        break
+                phrase = phrase[:-1]
+                if(phrase in line):
+                    print phrase
+                    phrase_matching_cols = db_helper.get_matching_columns(phrase, u'')
+                    break
 
             output = []
             for expression in current_node.expressions:
@@ -59,3 +60,5 @@ def get_wrapped_tree(parse_tree):
     for expression in parse_tree.expressions:
         output.append(iterate(expression))
     return FirstOrderExpression(parse_tree.operator, output)
+
+get_wrapped_tree(parse_tree)
