@@ -66,7 +66,33 @@ class SqlKeyWords:
 
 
 class SqlGrammar:
-    grammar_rules = []
+    @staticmethod
+    def get_all_operators():
+        for key in SqlKeyWords.KEYWORDS.keys():
+            if ('is_language_operator' in SqlKeyWords.KEYWORDS[key]) and \
+                    (SqlKeyWords.KEYWORDS[key]['is_language_operator']):
+                yield SqlKeyWords.KEYWORDS[key]
+
+    @staticmethod
+    def get_all_language_construct():
+        for key in SqlKeyWords.KEYWORDS.keys():
+            if 'is_language_construct' in SqlKeyWords.KEYWORDS[key] and \
+                    (SqlKeyWords.KEYWORDS[key]['is_language_construct']):
+                yield SqlKeyWords.KEYWORDS[key]
+
+    @staticmethod
+    def get_all_functions():
+        for key in SqlKeyWords.KEYWORDS.keys():
+            if 'is_language_function' in SqlKeyWords.KEYWORDS[key] and \
+                    (SqlKeyWords.KEYWORDS[key]['is_language_function']):
+                yield SqlKeyWords.KEYWORDS[key]
+
+
+class SqlGrammarHelper:
+    OPERATOR_ALIAS_TOKENS = [(op["lexeme"], [nlp(helpers.to_unicode(x)) for x in op['alias']]) for op in
+                             SqlGrammar.get_all_operators()]
+    FUNCTION_ALIAS_TOKENS = [(fun["lexeme"], [nlp(helpers.to_unicode(x)) for x in fun['alias']]) for fun in
+                             SqlGrammar.get_all_functions()]
 
 
 class SqlGenerator:
@@ -87,7 +113,7 @@ class SqlGenerator:
         cnts = {}
         for node in list_nodes:
             assert isinstance(node, wrapper_node)
-            if Noun.is_noun(node.token):
+            if SqlGenerator.is_useful_node(node):
                 phrase_similarities = node.phrase_similarity
                 for phrase_similarity in phrase_similarities:
                     tables[phrase_similarity[0]] = phrase_similarity[2] if phrase_similarity[0] not in tables else \
@@ -109,10 +135,7 @@ class SqlGenerator:
         cnts = {}
         for node in list_nodes:
             assert isinstance(node, wrapper_node)
-            if Noun.is_noun(node.token) or \
-                    ((not helpers.is_root(node.token)) and \
-                     (not Nominals.is_nominal(node.token)) and \
-                     (Coordination.is_prepositional_modifier(node.token) and not UnnecessaryWords.is_ignorable_prepositions(node.token))):
+            if SqlGenerator.is_useful_node(node):
                 phrase_similarities = node.phrase_similarity
                 for phrase_similarity in phrase_similarities:
                     if phrase_similarity[0] in tables:
@@ -130,6 +153,42 @@ class SqlGenerator:
         else:
             return []
 
+    def get_possible_where_expressions(self, wrapped_expression):
+        """
+        :param wrapped_expression:
+        :return: List of tuples containing the central token and the sql expression according to that token.
+        """
+        assert isinstance(wrapped_expression, FirstOrderExpression)
+        list_nodes = self.flatten_tree(wrapped_expression)
+        useful_nodes = [x for x in list_nodes if SqlGenerator.is_useful_node(x)]
+        operators = SqlGrammarHelper.OPERATOR_ALIAS_TOKENS
+        functions = SqlGrammarHelper.FUNCTION_ALIAS_TOKENS
+
+        # First filter out dates using entities
+        # filter out currency using entities
+        # filter out quantity or some other number
+
+        # Find out adjectives closest to the numeric filters
+        # Find out matching operators to the adjectives
+        # Find out operator aliases closest to the string filters
+        # If there is no close matching adjective then  Equals is the operator
+        adjective_nodes = [x for x in useful_nodes if Adjective.is_adjective(x.token)]
+
+        # Filter number and dates
+        operator_similarity_scores = [(node.token,
+                                       operator[0],  # Just take the lexeme
+                                       max(map(lambda op_alias: helpers.similarity_score(node.token, op_alias),
+                                               operator[1])))  # Take maximum of score out of all possible alias\
+                                      for operator in operators for node in list_nodes if
+                                      SqlGenerator.is_useful_node(node)]
+        functions_similarity_scores = [(node.token,
+                                        fun[0],  # Just take the lexeme
+                                        max(map(lambda fun_alias: helpers.similarity_score(node.token, fun_alias),
+                                                fun[1])))   # Take maximum of score out of all possible alias\
+                                       for fun in functions for node in list_nodes if
+                                       SqlGenerator.is_useful_node(node)]
+        return operator_similarity_scores + functions_similarity_scores
+
     def get_wrapped_tree(self, first_order_expression):
         assert isinstance(first_order_expression, FirstOrderExpression)
         return self.phrase_helper.get_wrapped_tree(first_order_expression)
@@ -144,6 +203,19 @@ class SqlGenerator:
                 post.append(expr)
         return post
 
+    @staticmethod
+    def is_useful_node(node):
+        assert isinstance(node, wrapper_node)
+        return Noun.is_noun(node.token) or \
+               ((not helpers.is_root(node.token)) and \
+                (not Nominals.is_nominal(node.token)) and \
+                (not Coordination.is_prepositional_modifier(node.token) or not UnnecessaryWords.is_ignorable_prepositions(
+                    node.token)))
+
+
+def print_on_screen(something):
+    print something
+
 
 def __main__():
     sql_gen = SqlGenerator('..\\..\\tests\\testing.db')
@@ -151,7 +223,10 @@ def __main__():
     wrapped_tree = sql_gen.get_wrapped_tree(parsed_question)
     table_names = sql_gen.get_table_names(wrapped_tree)
     column_names = sql_gen.get_column_names(wrapped_tree, {table_names[0]}, 5)
-    print (table_names, column_names)
+    similarities = sql_gen.get_possible_where_expressions(wrapped_tree)
+    print table_names
+    print column_names
+    [print_on_screen((str(similarity[0]), similarity[1], similarity[2])) for similarity in similarities]
 
 
 __main__()
