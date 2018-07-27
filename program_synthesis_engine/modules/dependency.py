@@ -296,9 +296,9 @@ class Noun:
         return make_expression(FirstOrderOperators.CONJUNCTION, conjunction_args)
 
     @staticmethod
-    def get_closest_noun(token, max_distance=2):
+    def get_closest_noun(token, max_distance=3):
         assert isinstance(token, spacy.tokens.Token)
-        if max_distance <= 0:
+        if max_distance <= 0 or (token.dep_ == "ROOT" and not Adjective.is_adjective(token)):
             return []
         if Noun.is_noun(token):
             return [token]
@@ -417,9 +417,9 @@ class Adjective:
         return to_return
 
     @staticmethod
-    def get_closest_adjectives(token, max_distance=2):
+    def get_closest_adjectives(token, max_distance=3):
         assert isinstance(token, spacy.tokens.Token)
-        if max_distance <= 0:
+        if max_distance <= 0 or (token.dep_ == "ROOT" and not Adjective.is_adjective(token)):
             return []
         if Adjective.is_adjective(token):
             return [token]

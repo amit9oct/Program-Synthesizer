@@ -165,6 +165,7 @@ class SqlGenerator:
         operators = SqlGrammarHelper.OPERATOR_ALIAS_TOKENS
         functions = SqlGrammarHelper.FUNCTION_ALIAS_TOKENS
 
+        person = []
         dates = []
         money = []
         quantity = []
@@ -174,6 +175,7 @@ class SqlGenerator:
         percent = []
         ent_time = []
         other_loc = []
+        others = []
         # filter out different types of entities
         for node in useful_nodes:
             assert isinstance(node, wrapper_node)
@@ -186,6 +188,8 @@ class SqlGenerator:
                     quantity.append(node)
                 elif phrase_helper.is_ent_ordinal(node.ent_tag):
                     ordinal.append(node)
+                elif phrase_helper.is_cardinal(node.ent_tag):
+                    cardinal.append(node)
                 elif phrase_helper.is_ent_geo_political(node.ent_tag):
                     geo_political.append(node)
                 elif phrase_helper.is_cardinal(node.ent_tag):
@@ -196,33 +200,38 @@ class SqlGenerator:
                     ent_time.append(node)
                 elif phrase_helper.is_ent_loc(node.ent_tag):
                     other_loc.append(node)
+                elif phrase_helper.is_ent_person(node.ent_tag):
+                    person.append(node)
+                else:
+                    others.append()
 
         column_op_ent_triplet = []
+        #all_col_info = dict([(table, self.phrase_helper.db_helper.get_column_info(table)) for table in tables])
         for node in money + quantity + cardinal:
             # Find out adjectives closest to the numeric filters
             if node.token.pos_ == "NUM":
                 closest_adjs = [token_node_map[adj] for adj in Adjective.get_closest_adjectives(node.token)]
-                closest_nouns = [token_node_map[noun] for adj in Noun.get_closest_adjectives(node.token)]
-                [self.phrase_helper.db_helper.get_column_info(table) for table in tables]
-        # Find out matching operators to the adjectives
-        # Find out operator aliases closest to the string filters
-        # If there is no close matching adjective then  Equals is the operator
-        adjective_nodes = [x for x in useful_nodes if Adjective.is_adjective(x.token)]
+                closest_nouns = [token_node_map[noun] for noun in Noun.get_closest_noun(node.token)]
+                best_adj_cols = [SqlGenerator.get_best_col(node1, tables) for node1 in closest_adjs]
+                best_noun_cols = [SqlGenerator.get_best_col(node2, tables) for node2 in closest_nouns]
+                best_cols = best_adj_cols if best_adj_cols else best_noun_cols
+                best_cols = sorted(best_cols, cmp=None, key=lambda y: y[2], reverse=True)
+                best_col = best_cols[0]
+                all_related_nouns = []
+                for closest_adj in closest_adjs:
+                    all_related_nouns.extend(Adjective.get_related_nouns(closest_adj.token))
+                best_noun = [(noun, helpers.similarity_score(helpers.to_unicode(noun[0]), best_col[1])) for noun in all_related_nouns]
+                best_noun = sorted(best_noun, cmp=None, key=lambda y: y[1], reverse=True)
+                best_operator = SqlGenerator.get_best_operator(nlp(helpers.to_unicode(best_noun[0][0][1]))[0]) if closest_adjs else SqlKeyWords.KEYWORDS["EQUALS"]["lexeme"]
+                column_op_ent_triplet.append((best_col[1], best_operator, node))
+        for node in person + dates + geo_political + other_loc + others:
+            best_cols = SqlGenerator.get_best_col(node, tables)
+            best_cols = sorted(best_cols, cmp=None, key=lambda y: y[2], reverse=True)
+            best_col = best_cols[0]
+            best_operator = SqlKeyWords.KEYWORDS["EQUALS"]["lexeme"]
+            column_op_ent_triplet.append((best_col[1], best_operator, node))
 
-        # Filter number and dates
-        operator_similarity_scores = [(node.token,
-                                       operator[0],  # Just take the lexeme
-                                       max(map(lambda op_alias: helpers.similarity_score(node.token, op_alias),
-                                               operator[1])))  # Take maximum of score out of all possible alias\
-                                      for operator in operators for node in list_nodes if
-                                      SqlGenerator.is_useful_node(node)]
-        functions_similarity_scores = [(node.token,
-                                        fun[0],  # Just take the lexeme
-                                        max(map(lambda fun_alias: helpers.similarity_score(node.token, fun_alias),
-                                                fun[1])))  # Take maximum of score out of all possible alias\
-                                       for fun in functions for node in list_nodes if
-                                       SqlGenerator.is_useful_node(node)]
-        return operator_similarity_scores + functions_similarity_scores
+        return column_op_ent_triplet
 
     def get_wrapped_tree(self, first_order_expression):
         assert isinstance(first_order_expression, FirstOrderExpression)
@@ -247,6 +256,88 @@ class SqlGenerator:
                 (not Coordination.is_prepositional_modifier(node.token) or
                  not UnnecessaryWords.is_ignorable_prepositions(node.token)))
 
+    @staticmethod
+    def get_best_col(node, tables):
+        assert isinstance(node, wrapper_node)
+        assert isinstance(tables, list)
+        all_cols = [x for x in node.word_similarity if str(x[0]) in tables]
+        if all_cols:
+            all_cols = sorted(all_cols, cmp=None, key=lambda y: y[2], reverse=True)
+            return all_cols[0]
+        else:
+            return None
+
+    @staticmethod
+    def get_best_operator(token):
+        assert isinstance(token, spacy.tokens.Token)
+        operators = SqlGrammarHelper.OPERATOR_ALIAS_TOKENS
+        all_ops = [(operator[0],
+                    max(map(lambda op_alias: helpers.similarity_score(token, op_alias),
+                            operator[1])))
+                   for operator in operators]
+        all_ops = sorted(all_ops, cmp=None, key=lambda y: y[1], reverse=True)
+        return all_ops[0][0]
+
+    def get_sqlite_phrase(self, table_name, triplet_list, tree):
+        """
+        :param triplet_list:
+        :param tree:
+        :return:
+        """
+        if isinstance(tree, FirstOrderExpression):
+            child_queries = []
+            # concatenate the nodes with right operator
+            for node in tree.expressions:
+                cur_query = self.get_sqlite_phrase(table_name, triplet_list, node)
+                # add only if it isn't empty
+                if cur_query != "":
+                    child_queries.append(cur_query)
+
+            final_query = ""
+            cur_operator = self.get_sqlite_operator(tree.operator)
+            if child_queries.__len__() > 1:
+                final_query = cur_operator.join(child_queries)
+            elif child_queries.__len__() == 1:
+                return child_queries[0]
+            return final_query
+        else:
+            # currently only tokens are supported
+            matching_triplet = self.get_matching_triplet(triplet_list, tree)
+            if matching_triplet is not None:
+                col_info = self.phrase_helper.db_helper.get_column_info(table_name, matching_triplet[0])
+                if col_info[1] == "INTEGER" or col_info[1] == "REAL":
+                    return "(" + col_info[0] + " " + matching_triplet[1] + " " + matching_triplet[2].token.text + ")"
+                else:
+                    return "(" + col_info[0] + " " + matching_triplet[1] + " '" + matching_triplet[2].token.text + "')"
+            else:
+                return ""
+
+    def get_sqlite_operator(self, fo_operator):
+        if fo_operator == FirstOrderOperators.CONJUNCTION:
+            return " AND "
+        elif fo_operator == FirstOrderOperators.DISJUNCTION:
+            return " OR "
+        else:
+            # default it to and
+            return " AND "
+
+    def get_matching_triplet(self, triplet_list, node):
+        assert isinstance(node, wrapper_node)
+        for triplet in triplet_list:
+            if node == triplet[2]:
+                return triplet
+        return None
+
+    def get_sql_query(self, parsed_question):
+        assert isinstance(parsed_question, FirstOrderExpression)
+        wrapped_tree = self.get_wrapped_tree(parsed_question)
+        table_names = self.get_table_names(wrapped_tree)
+        column_names = self.get_column_names(wrapped_tree, {table_names[0]}, 5)
+        wheres = self.get_possible_where_expressions(wrapped_tree, [table_names[0]])
+        wheres_concat = self.get_sqlite_phrase(table_names[0], wheres, wrapped_tree)
+        return "SELECT {} FROM {} WHERE {}".format(",".join([str(col[1]) for col in column_names]),
+                                                   ",".join([str(table) for table in table_names]),
+                                                   wheres_concat)
 
 def print_on_screen(something):
     print something
@@ -255,13 +346,14 @@ def print_on_screen(something):
 def __main__():
     sql_gen = SqlGenerator('..\\..\\tests\\testing.db')
     parsed_question = helpers.parse_question(nlp(u'Get all employees who are younger than 15.'))
+    print sql_gen.get_sql_query(parsed_question)
     wrapped_tree = sql_gen.get_wrapped_tree(parsed_question)
     table_names = sql_gen.get_table_names(wrapped_tree)
     column_names = sql_gen.get_column_names(wrapped_tree, {table_names[0]}, 5)
-    similarities = sql_gen.get_possible_where_expressions(wrapped_tree)
+    similarities = sql_gen.get_possible_where_expressions(wrapped_tree, [table_names[0]])
     print table_names
     print column_names
-    [print_on_screen((str(similarity[0]), similarity[1], similarity[2])) for similarity in similarities]
+    [print_on_screen((str(similarity[0]), similarity[1], str(similarity[2].token))) for similarity in similarities]
+    print sql_gen.get_sqlite_phrase(table_names[0], similarities, wrapped_tree)
 
-
-__main__()
+#__main__()

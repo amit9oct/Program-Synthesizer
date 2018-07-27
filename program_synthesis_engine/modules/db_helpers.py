@@ -277,8 +277,13 @@ class sqlite_db_helpers:
 
         return max(word_similarity, phrase_similarity, tag_similarity)
 
-    def get_column_info(self, table_name):
-        return self._columns[table_name]
+    def get_column_info(self, table_name, column_name):
+        if column_name == "":
+            return self._columns[table_name]
+        else:
+            for col in self._columns[table_name]:
+                if col[0] == column_name:
+                    return col
 
 
 def __main__():

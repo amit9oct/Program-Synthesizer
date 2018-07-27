@@ -112,6 +112,10 @@ class phrase_helper:
     def is_cardinal(ent_short):
         return str(ent_short) == "CARDINAL"
 
+    @staticmethod
+    def is_ent_person(ent_short):
+        return str(ent_short) == "PERSON"
+
 
 def __main__():
     line = u'Get all employees who are younger than 15.'
