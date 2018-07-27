@@ -13,14 +13,21 @@ class phrase_helper:
         self.db_helper.init()
 
     def iterate(self, current_node):
-        #print current_node
 
         if current_node is None:
             return
 
         if isinstance(current_node, spacy.tokens.Token):
-            word_matching_cols = self.db_helper.get_matching_columns(helpers.to_unicode(str(current_node)), helpers.to_unicode(str(current_node)))
-            phrase_matching_cols = self.db_helper.get_matching_columns(helpers.to_unicode(str(current_node)), u'')
+            possible_ent = current_node.ent_type_
+            tag = []
+            if current_node.ent_iob_ == "B" or current_node.ent_iob_ == "I":
+                tag.append(phrase_helper.get_ent_meaning(possible_ent))
+            word_matching_cols = self.db_helper.get_matching_columns(helpers.to_unicode(str(current_node)),
+                                                                     helpers.to_unicode(str(current_node)),
+                                                                     tags=tag)
+            phrase_matching_cols = self.db_helper.get_matching_columns(helpers.to_unicode(str(current_node)),
+                                                                       u'',
+                                                                       tags=tag)
             return wrapper_node(current_node, word_matching_cols, phrase_matching_cols)
 
         if isinstance(current_node, FirstOrderExpression):
@@ -38,7 +45,13 @@ class phrase_helper:
 
                 output = []
                 for expression in current_node.expressions:
-                    word_matching_cols = self.db_helper.get_matching_columns(phrase, helpers.to_unicode(str(expression)))
+                    assert isinstance(expression, spacy.tokens.Token)
+                    tag = [phrase_helper.get_ent_meaning(expression.ent_type_)] if expression.ent_iob_ == "B" or \
+                                                                                   expression.ent_iob_ == "I" or \
+                                                                                   expression.ent_iob_ == "O" else []
+                    word_matching_cols = self.db_helper.get_matching_columns(phrase,
+                                                                             helpers.to_unicode(str(expression)),
+                                                                             tags=tag)
                     output.append(wrapper_node(expression, word_matching_cols, phrase_matching_cols))
                 return FirstOrderExpression(current_node.operator, output)
             else:
@@ -52,6 +65,10 @@ class phrase_helper:
         for expression in parse_tree.expressions:
             output.append(self.iterate(expression))
         return FirstOrderExpression(parse_tree.operator, output)
+
+    @staticmethod
+    def get_ent_meaning(ent_short):
+        return spacy.explain(ent_short)
 
 
 def __main__():
