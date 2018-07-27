@@ -21,6 +21,7 @@ class sqlite_db_helpers:
         assert isinstance(db_path, basestring)
         self._columns = {}
         self._distinct_values = {}
+        self._distinct_values_nlp = {}
         self.db_path = db_path
         self._is_inited = False
         self.bing_corrector = spell_corrector.bing_spell_corrector()
@@ -49,10 +50,12 @@ class sqlite_db_helpers:
         # private dictionaries used internally
         self._columns = {}
         self._distinct_values = {}
+        self._distinct_values_nlp = {}
         for table in cursor.execute(sqlite_db_helpers.get_tables_query).fetchall():
             ### print "Fetching schema of table " + table[0]
             self._columns[table[0]] = []
             self._distinct_values[table[0]] = {}
+            self._distinct_values_nlp[table[0]] = {}
 
             # fetch all columns in the table
             columns = cursor.execute(sqlite_db_helpers.get_table_schema % (table[0])).fetchall()
@@ -86,7 +89,12 @@ class sqlite_db_helpers:
                 if self.should_store(column[1], distinct_values.__len__(), count_of_rows):
                     ### print "Adding distinct values: " + str(distinct_values)
                     # add them to cache for later use
+                    distinct_vals_spacy_nodes = []
+                    for distinct_val in distinct_values:
+                        distinct_vals_spacy_nodes.append(helpers.nlp(helpers.to_unicode(distinct_val)))
+
                     self._distinct_values[table[0]][column[1]] = distinct_values
+                    self._distinct_values_nlp[table[0]][column[1]] = distinct_vals_spacy_nodes
 
                 ### print distinct_values
         self._is_inited = True
@@ -176,17 +184,18 @@ class sqlite_db_helpers:
                 if isinstance(value, basestring) and column[1] == "TEXT":
                     # check if it's a perfect match
                     if column[0] in self._distinct_values[table]:
-                        match_result = self.match_with_values(self._distinct_values[table][column[0]], value)
+                        match_result = self.match_with_values(self._distinct_values[table][column[0]],\
+                                                              self._distinct_values_nlp[table][column[0]], value)
 
                         # sometimes we can have substring in names
                         # in such cases, let's make similarity score 0.5
-                        if helpers.similarity_score(helpers.to_unicode(column[0]), helpers.to_unicode("name")) > 0.5 \
+                        if helpers.similarity_score(helpers.to_unicode(column[0]), helpers.to_unicode("name")) > 0.9 \
                                 and any(value in string for string in self._distinct_values[table][column[0]]):
                             if match_result[0] < 0.5:
-                                match_result = 0.5
+                                match_result = (0.5, column[0])
 
                         if match_result[0] > 0:
-                            to_return.append(table, column[0], match_result[0])
+                            to_return.append((table, column[0], match_result[0]))
                             found_some_column = True
 
                 # TODO::Improve matching logic by considering a small error range
@@ -197,18 +206,17 @@ class sqlite_db_helpers:
                             to_return.append((table, column[0], match_result[0]))
                             found_some_column = True
 
-            if not found_some_column:
-                # find the column which matches the most
-                match_score = 0.0
-                match_col = ""
-                for column in self._columns[table]:
-                    col_score = self.match_with_column_name(phrase, value, column[0], tags)
-                    # TODO::Refine the filtering logic
-                    if col_score > 0 and col_score > match_score:
-                        match_score = col_score
-                        match_col = column[0]
+            # find the column which matches the most
+            match_score = 0.0
+            match_col = ""
+            for column in self._columns[table]:
+                col_score = self.match_with_column_name(phrase, value, column[0], tags)
+                # TODO::Refine the filtering logic
+                if col_score > 0 and col_score > match_score:
+                    match_score = col_score
+                    match_col = column[0]
 
-                to_return.append((table, match_col, match_score))
+            to_return.append((table, match_col, match_score))
 
         return to_return
 
@@ -224,12 +232,13 @@ class sqlite_db_helpers:
 
         return (cur_score, match_value)
 
-    def match_with_values(self, distinct_values, value):
+    def match_with_values(self, distinct_values, distinct_nlps, value):
         max_score = 0.0
         max_score_val = ""
-        for col_value in distinct_values:
+        for col_value, nlp_value in zip(distinct_values, distinct_nlps):
             # use spacy's matching index
-            cur_score = helpers.similarity_score(col_value, value)
+            # col_value is a tuple and 2nd element is nlp node
+            cur_score = helpers.similarity_score(nlp_value, helpers.to_unicode(value))
             if cur_score > max_score:
                 max_score = cur_score
                 max_score_val = col_value
