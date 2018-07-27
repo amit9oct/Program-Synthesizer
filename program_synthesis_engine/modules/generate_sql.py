@@ -184,7 +184,7 @@ class SqlGenerator:
         functions_similarity_scores = [(node.token,
                                         fun[0],  # Just take the lexeme
                                         max(map(lambda fun_alias: helpers.similarity_score(node.token, fun_alias),
-                                                fun[1])))   # Take maximum of score out of all possible alias\
+                                                fun[1])))  # Take maximum of score out of all possible alias\
                                        for fun in functions for node in list_nodes if
                                        SqlGenerator.is_useful_node(node)]
         return operator_similarity_scores + functions_similarity_scores
@@ -207,10 +207,10 @@ class SqlGenerator:
     def is_useful_node(node):
         assert isinstance(node, wrapper_node)
         return Noun.is_noun(node.token) or \
-               ((not helpers.is_root(node.token)) and \
-                (not Nominals.is_nominal(node.token)) and \
-                (not Coordination.is_prepositional_modifier(node.token) or not UnnecessaryWords.is_ignorable_prepositions(
-                    node.token)))
+               ((not helpers.is_root(node.token)) and
+                (not Nominals.is_nominal(node.token)) and
+                (not Coordination.is_prepositional_modifier(node.token) or
+                 not UnnecessaryWords.is_ignorable_prepositions(node.token)))
 
 
 def print_on_screen(something):
