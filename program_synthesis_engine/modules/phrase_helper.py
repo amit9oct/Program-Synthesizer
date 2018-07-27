@@ -47,8 +47,7 @@ class phrase_helper:
                 for expression in current_node.expressions:
                     assert isinstance(expression, spacy.tokens.Token)
                     tag = [phrase_helper.get_ent_meaning(expression.ent_type_)] if expression.ent_iob_ == "B" or \
-                                                                                   expression.ent_iob_ == "I" or \
-                                                                                   expression.ent_iob_ == "O" else []
+                                                                                   expression.ent_iob_ == "I" else []
                     word_matching_cols = self.db_helper.get_matching_columns(phrase,
                                                                              helpers.to_unicode(str(expression)),
                                                                              tags=tag)
