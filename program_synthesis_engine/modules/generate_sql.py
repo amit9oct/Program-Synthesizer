@@ -247,6 +247,53 @@ class SqlGenerator:
                 (not Coordination.is_prepositional_modifier(node.token) or
                  not UnnecessaryWords.is_ignorable_prepositions(node.token)))
 
+    def get_sqlite_phrase(self, table_name, triplet_list, tree):
+        """
+        :param triplet_list:
+        :param tree:
+        :return:
+        """
+        if isinstance(tree, FirstOrderExpression):
+            child_queries = []
+            # concatenate the nodes with right operator
+            for node in tree:
+                cur_query = self.get_sqlite_phrase(triplet_list, node)
+                # add only if it isn't empty
+                if cur_query != "":
+                    child_queries.append(cur_query)
+
+            final_query = ""
+            cur_operator = self.get_sqlite_operator(tree.operator)
+            if child_queries.__len__() > 1:
+                final_query = cur_operator.join(child_queries)
+            return final_query
+        else:
+            # currently only tokens are supported
+            matching_triplet = self.get_matching_triplet(triplet_list, tree)
+            if matching_triplet:
+                col_info = self.phrase_helper.db_helper.get_column_info(table_name, matching_triplet[0])
+                if col_info[1] == "INTEGER" or col_info[1] == "REAL":
+                    return "(" + col_info[0] + " " + matching_triplet[1] + " " + matching_triplet[2].token.text + ")"
+                else:
+                    return "(" + col_info[0] + " " + matching_triplet[1] + " '" + matching_triplet[2].token.text + "')"
+            else:
+                return ""
+
+    def get_sqlite_operator(self, fo_operator):
+        if fo_operator == FirstOrderOperators.CONJUNCTION:
+            return " AND "
+        elif fo_operator == FirstOrderOperators.DISJUNCTION:
+            return " OR "
+        else:
+            # default it to and
+            return " AND "
+
+    def get_matching_triplet(self, triplet_list, node):
+        assert isinstance(node, wrapper_node)
+        for triplet in triplet_list:
+            if node == triplet[2]:
+                return triplet
+        return None
 
 def print_on_screen(something):
     print something
