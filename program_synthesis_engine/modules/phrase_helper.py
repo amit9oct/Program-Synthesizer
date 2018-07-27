@@ -69,6 +69,49 @@ class phrase_helper:
     def get_ent_meaning(ent_short):
         return spacy.explain(ent_short)
 
+    @staticmethod
+    def is_ent_date(ent_short):
+        return str(ent_short) == "DATE"
+
+    @staticmethod
+    def is_ent_time(ent_short):
+        # time smaller than a day
+        return str(ent_short) == "TIME"
+
+    @staticmethod
+    def is_ent_money(ent_short):
+        # Monetary values
+        return str(ent_short) == "MONEY"
+
+    @staticmethod
+    def is_ent_quantity(ent_short):
+        # distance, wt etc
+        return str(ent_short) == "QUANTITY"
+
+    @staticmethod
+    def is_ent_ordinal(ent_short):
+        # first, second, third
+        return str(ent_short) == "ORDINAL"
+
+    @staticmethod
+    def is_ent_percent(ent_short):
+        # having %
+        return str(ent_short) == "PERCENT"
+
+    @staticmethod
+    def is_ent_geo_political(ent_short):
+        # countries, cities etc
+        return str(ent_short) == "GPE"
+
+    @staticmethod
+    def is_ent_loc(ent_short):
+        # locations other than GPE like mountain, river etc.
+        return str(ent_short) == "LOC"
+
+    @staticmethod
+    def is_cardinal(ent_short):
+        return str(ent_short) == "CARDINAL"
+
 
 def __main__():
     line = u'Get all employees who are younger than 15.'

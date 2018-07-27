@@ -268,6 +268,9 @@ class sqlite_db_helpers:
 
         return max(word_similarity, phrase_similarity, tag_similarity)
 
+    def get_column_info(self, table_name):
+        return self._columns[table_name]
+
 
 def __main__():
     helper = sqlite_db_helpers('..\\..\\tests\\testing.db')

@@ -153,22 +153,57 @@ class SqlGenerator:
         else:
             return []
 
-    def get_possible_where_expressions(self, wrapped_expression):
+    def get_possible_where_expressions(self, wrapped_expression, tables=[]):
         """
         :param wrapped_expression:
         :return: List of tuples containing the central token and the sql expression according to that token.
         """
         assert isinstance(wrapped_expression, FirstOrderExpression)
         list_nodes = self.flatten_tree(wrapped_expression)
+        token_node_map = dict([(node.token, node) for node in list_nodes])
         useful_nodes = [x for x in list_nodes if SqlGenerator.is_useful_node(x)]
         operators = SqlGrammarHelper.OPERATOR_ALIAS_TOKENS
         functions = SqlGrammarHelper.FUNCTION_ALIAS_TOKENS
 
-        # First filter out dates using entities
-        # filter out currency using entities
-        # filter out quantity or some other number
+        dates = []
+        money = []
+        quantity = []
+        ordinal = []
+        geo_political = []
+        cardinal = []
+        percent = []
+        ent_time = []
+        other_loc = []
+        # filter out different types of entities
+        for node in useful_nodes:
+            assert isinstance(node, wrapper_node)
+            if node.ent_iob == "B" or node.ent_iob == "I":
+                if phrase_helper.is_ent_date(node.ent_tag):
+                    dates.append(node)
+                elif phrase_helper.is_ent_money(node.ent_tag):
+                    money.append(node)
+                elif phrase_helper.is_ent_quantity(node.ent_tag):
+                    quantity.append(node)
+                elif phrase_helper.is_ent_ordinal(node.ent_tag):
+                    ordinal.append(node)
+                elif phrase_helper.is_ent_geo_political(node.ent_tag):
+                    geo_political.append(node)
+                elif phrase_helper.is_cardinal(node.ent_tag):
+                    cardinal.append(node)
+                elif phrase_helper.is_ent_percent(node.ent_tag):
+                    percent.append(node)
+                elif phrase_helper.is_ent_time(node.ent_tag):
+                    ent_time.append(node)
+                elif phrase_helper.is_ent_loc(node.ent_tag):
+                    other_loc.append(node)
 
-        # Find out adjectives closest to the numeric filters
+        column_op_ent_triplet = []
+        for node in money + quantity + cardinal:
+            # Find out adjectives closest to the numeric filters
+            if node.token.pos_ == "NUM":
+                closest_adjs = [token_node_map[adj] for adj in Adjective.get_closest_adjectives(node.token)]
+                closest_nouns = [token_node_map[noun] for adj in Noun.get_closest_adjectives(node.token)]
+                [self.phrase_helper.db_helper.get_column_info(table) for table in tables]
         # Find out matching operators to the adjectives
         # Find out operator aliases closest to the string filters
         # If there is no close matching adjective then  Equals is the operator

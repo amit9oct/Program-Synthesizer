@@ -295,6 +295,20 @@ class Noun:
                     make_expression(FirstOrderOperators.CONJUNCTION, Adhoc.post_order(child)))
         return make_expression(FirstOrderOperators.CONJUNCTION, conjunction_args)
 
+    @staticmethod
+    def get_closest_noun(token, max_distance=2):
+        assert isinstance(token, spacy.tokens.Token)
+        if max_distance <= 0:
+            return []
+        if Noun.is_noun(token):
+            return [token]
+        else:
+            possible_answers = []
+            possible_answers.extend(Noun.get_closest_noun(token.head, max_distance - 1))
+            for child in token.children:
+                possible_answers.extend(Noun.get_closest_noun(child, max_distance - 1))
+            return possible_answers
+
 
 class Actions:
 
@@ -401,6 +415,20 @@ class Adjective:
             for noun in related_nouns.keys():
                 to_return.append((noun, related_nouns[noun]))
         return to_return
+
+    @staticmethod
+    def get_closest_adjectives(token, max_distance=2):
+        assert isinstance(token, spacy.tokens.Token)
+        if max_distance <= 0:
+            return []
+        if Adjective.is_adjective(token):
+            return [token]
+        else:
+            possible_answers = []
+            possible_answers.extend(Adjective.get_closest_adjectives(token.head, max_distance - 1))
+            for child in token.children:
+                possible_answers.extend(Adjective.get_closest_adjectives(child, max_distance - 1))
+            return possible_answers
 
 
 class Complements:
