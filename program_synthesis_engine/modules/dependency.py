@@ -371,6 +371,38 @@ class Actions:
         return Actions._parse_verb(token, all_objects, all_subjects)
 
 
+class Adjective:
+    def __init__(self):
+        pass
+
+    import json
+    _adj_dict = json.load(open('adjectives.json', 'r'))
+
+    @staticmethod
+    def is_adjective(token):
+        assert isinstance(token, spacy.tokens.Token)
+        return token.pos_ == "ADJ"
+
+    @staticmethod
+    def get_adjective_type(token):
+        assert isinstance(token, spacy.tokens.Token)
+        if str(token.lemma_) in Adjective._adj_dict.keys():
+            for key in Adjective._adj_dict[str(token.lemma_)].keys():
+                if Adjective._adj_dict[str(token.lemma_)][key] == str(token):
+                    return key
+        return None
+
+    @staticmethod
+    def get_related_nouns(token):
+        assert isinstance(token, spacy.tokens.Token)
+        to_return = []
+        if str(token.lemma_) in Adjective._adj_dict.keys():
+            related_nouns = Adjective._adj_dict[str(token.lemma_)]["related_noun"]
+            for noun in related_nouns.keys():
+                to_return.append((noun, related_nouns[noun]))
+        return to_return
+
+
 class Complements:
     def __init__(self):
         pass
